@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  reverse-proxy:
+    network_mode: host
+    image: nginx:1.19.5
+    container_name: reverse-proxy
+    restart: always
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+    logging:
+      driver: json-file
+      options: 
+        max-size: "200k"
+        max-file: "10"
+    ports:
+      - 80:80
